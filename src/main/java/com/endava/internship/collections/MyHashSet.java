@@ -1,82 +1,89 @@
 package com.endava.internship.collections;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
-public class StudentSet implements Set<Student> {
+public class MyHashSet<Student>
+        extends AbstractSet<Student>
+        implements Set<Student> {
+
+    private HashMap<Student, Object> map;
+    private static final Object PRESENT = new Object();
+
+    public MyHashSet() {
+        map = new HashMap<>();
+    }
+
+    public MyHashSet(int capacity) {
+        map = new HashMap<>(capacity);
+    }
+
     @Override
     public int size() {
-        //TODO
-        return 0;
+        return map.size();
     }
 
     @Override
     public boolean isEmpty() {
-        //TODO
-        return false;
+        return map.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        //TODO
-        return false;
+        return map.containsKey(o);
     }
 
     @Override
     public Iterator<Student> iterator() {
-        //TODO
-        return null;
+        return map.keySet().iterator();
     }
 
     @Override
     public Object[] toArray() {
-        //TODO
-        return new Object[0];
+        return map.keySet().toArray(new Object[map.size()]);
     }
 
     @Override
-    public <T> T[] toArray(T[] ts) {
-        //TODO
-        return null;
+    public <T> T[] toArray(T[] a) {
+
+        return map.keySet().toArray(a);
     }
 
     @Override
-    public boolean add(Student student) {
-        //TODO
-        return false;
+    public boolean add(Student st) {
+        return map.put(st, PRESENT) == null;
     }
 
     @Override
     public boolean remove(Object o) {
-        //TODO
-        return false;
+        return map.remove(o) == PRESENT;
     }
 
     @Override
     public void clear() {
-        //TODO
+        map.clear();
     }
 
     @Override
     public boolean addAll(Collection<? extends Student> collection) {
-        //TODO
-        return false;
+        boolean modified = false;
+        for (Student st : collection) {
+            if (add(st)) {
+                modified = true;
+            }
+        }
+        return modified;
     }
 
-    @Override
     public boolean containsAll(Collection<?> collection) {
         //Ignore this for homework
         throw new UnsupportedOperationException();
     }
 
-    @Override
     public boolean retainAll(Collection<?> collection) {
         //Ignore this for homework
         throw new UnsupportedOperationException();
     }
 
-    @Override
     public boolean removeAll(Collection<?> collection) {
         //Ignore this for homework
         throw new UnsupportedOperationException();

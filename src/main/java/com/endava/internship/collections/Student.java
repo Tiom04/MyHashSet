@@ -1,11 +1,9 @@
 package com.endava.internship.collections;
 
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 
-/**
- * The class that defines the element that will be contained by your collection
- */
-public class Student //TODO consider implementing any interfaces necessary for your collection
+public class Student implements Comparable<Student>
 {
     private String name;
     private LocalDate dateOfBirth;
@@ -23,10 +21,40 @@ public class Student //TODO consider implementing any interfaces necessary for y
 
     public String getDetails() { return details; }
 
-    /*
-    TODO consider overriding any methods for this object to function properly within a collection:
-        1. A student is considered unique by a combination of their name and dateOfBirth
-        2. Student names are sorted alphabetically, if two students have the same name, then the older one is
-        placed before the younger student in an ordered student list.
-    */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Student st = (Student) obj;
+        return st.name.equals(name) && st.dateOfBirth == dateOfBirth
+                && st.details.equals(details);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 17;
+        result *= prime + name.hashCode();
+        result *= prime + dateOfBirth.getDayOfMonth();
+        result *= prime + details.hashCode();
+        return result;
+    }
+
+    @Override
+    public int compareTo(Student st) {
+        return st.name.equals(name) ? (st.dateOfBirth.isAfter(dateOfBirth)
+                || st.dateOfBirth.equals(dateOfBirth)) ? -1
+                : 0 : st.name.compareTo(name) > 0 ? -1 : 0;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "name: " + this.name + " birth date: "
+                + this.dateOfBirth.toString() + " details: " + this.details;
+    }
 }
