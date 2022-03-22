@@ -2,11 +2,11 @@ package com.endava.internship.collections;
 
 import java.util.*;
 
-public class MyHashSet<Student>
-        extends AbstractSet<Student>
-        implements Set<Student> {
+public class MyHashSet<T>
+        extends AbstractSet<T>
+        implements Set<T> {
 
-    private HashMap<Student, Object> map;
+    private HashMap<T, Object> map;
     private static final Object PRESENT = new Object();
 
     public MyHashSet() {
@@ -33,7 +33,7 @@ public class MyHashSet<Student>
     }
 
     @Override
-    public Iterator<Student> iterator() {
+    public Iterator<T> iterator() {
         return map.keySet().iterator();
     }
 
@@ -49,8 +49,8 @@ public class MyHashSet<Student>
     }
 
     @Override
-    public boolean add(Student st) {
-        return map.put(st, PRESENT) == null;
+    public boolean add(T obj) {
+        return map.put(obj, PRESENT) == null;
     }
 
     @Override
@@ -64,10 +64,10 @@ public class MyHashSet<Student>
     }
 
     @Override
-    public boolean addAll(Collection<? extends Student> collection) {
+    public boolean addAll(Collection<? extends T> collection) {
         boolean modified = false;
-        for (Student st : collection) {
-            if (add(st)) {
+        for (T obj : collection) {
+            if (add(obj)) {
                 modified = true;
             }
         }
@@ -75,17 +75,33 @@ public class MyHashSet<Student>
     }
 
     public boolean containsAll(Collection<?> collection) {
-        //Ignore this for homework
-        throw new UnsupportedOperationException();
+        for (Object val : collection) {
+            if (!map.containsKey(val)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean retainAll(Collection<?> collection) {
-        //Ignore this for homework
-        throw new UnsupportedOperationException();
+        boolean modified = false;
+        for (Object val : collection) {
+            if (!map.containsKey(val)) {
+                map.remove(val);
+                modified = true;
+            }
+        }
+        return modified;
     }
 
     public boolean removeAll(Collection<?> collection) {
-        //Ignore this for homework
-        throw new UnsupportedOperationException();
+        boolean modified = false;
+        for (Object val : collection) {
+            if (map.containsKey(val)) {
+                map.remove(val);
+                modified = true;
+            }
+        }
+        return modified;
     }
 }

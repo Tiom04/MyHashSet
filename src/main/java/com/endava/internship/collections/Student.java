@@ -3,8 +3,7 @@ package com.endava.internship.collections;
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
 
-public class Student implements Comparable<Student>
-{
+public class Student implements Comparable<Student> {
     private String name;
     private LocalDate dateOfBirth;
     private String details;
@@ -15,11 +14,17 @@ public class Student implements Comparable<Student>
         this.details = details;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public LocalDate getDateOfBirth() { return dateOfBirth; }
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-    public String getDetails() { return details; }
+    public String getDetails() {
+        return details;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -52,8 +57,7 @@ public class Student implements Comparable<Student>
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "name: " + this.name + " birth date: "
                 + this.dateOfBirth.toString() + " details: " + this.details;
     }
