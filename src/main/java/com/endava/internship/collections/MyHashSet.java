@@ -6,12 +6,13 @@ public class MyHashSet<Student>
         extends AbstractSet<Student>
         implements Set<Student> {
 
-    private HashMap<Student,Object> map;
+    private HashMap<Student, Object> map;
     private static final Object PRESENT = new Object();
 
     public MyHashSet() {
         map = new HashMap<>();
     }
+
     public MyHashSet(int capacity) {
         map = new HashMap<>(capacity);
     }
@@ -49,12 +50,12 @@ public class MyHashSet<Student>
 
     @Override
     public boolean add(Student st) {
-        return map.put(st, PRESENT)==null;
+        return map.put(st, PRESENT) == null;
     }
 
     @Override
     public boolean remove(Object o) {
-        return map.remove(o)==PRESENT;
+        return map.remove(o) == PRESENT;
     }
 
     @Override
@@ -65,8 +66,11 @@ public class MyHashSet<Student>
     @Override
     public boolean addAll(Collection<? extends Student> collection) {
         boolean modified = false;
-        for (Student st : collection)
-            if (add(st)) modified = true;
+        for (Student st : collection) {
+            if (add(st)) {
+                modified = true;
+            }
+        }
         return modified;
     }
 

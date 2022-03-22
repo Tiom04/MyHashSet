@@ -33,6 +33,7 @@ public class Student implements Comparable<Student>
         return st.name.equals(name) && st.dateOfBirth == dateOfBirth
                 && st.details.equals(details);
     }
+
     @Override
     public int hashCode() {
         final int prime = 31;
