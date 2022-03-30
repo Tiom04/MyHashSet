@@ -85,11 +85,15 @@ public class MyHashSet<T>
 
     public boolean retainAll(Collection<?> collection) {
         boolean modified = false;
+        ArrayList elementsToRemove = new ArrayList<>();
         for (Object val : map.keySet()) {
             if (!collection.contains(val)) {
-                map.remove(val);
+                elementsToRemove.add(val);
                 modified = true;
             }
+        }
+        if (!elementsToRemove.isEmpty()) {
+            map.keySet().removeAll(elementsToRemove);
         }
         return modified;
     }
