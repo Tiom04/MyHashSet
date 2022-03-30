@@ -85,8 +85,8 @@ public class MyHashSet<T>
 
     public boolean retainAll(Collection<?> collection) {
         boolean modified = false;
-        for (Object val : collection) {
-            if (!map.containsKey(val)) {
+        for (Object val : map.keySet()) {
+            if (!collection.contains(val)) {
                 map.remove(val);
                 modified = true;
             }
