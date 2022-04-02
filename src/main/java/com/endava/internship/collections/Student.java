@@ -1,7 +1,6 @@
 package com.endava.internship.collections;
 
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 
 public class Student implements Comparable<Student> {
     private String name;

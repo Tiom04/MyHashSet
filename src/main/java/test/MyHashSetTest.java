@@ -83,6 +83,7 @@ public class MyHashSetTest {
         Integer[] integers = new Integer[3];//becomes null if size is smaller
         myHashSet.toArray(integers);
         assertThat(integers[0]).isInstanceOf(Integer.class);
+        myHashSet.clear();//added not to affect other tests
     }
 
     @Test
@@ -123,6 +124,7 @@ public class MyHashSetTest {
         integers.add(36);
         integers.add(39);
         integers.add(38);
+        myHashSet.clear();
         myHashSet.addAll(integers);
         assertFalse(myHashSet.retainAll(integers));
         myHashSet.add(32);
@@ -136,6 +138,7 @@ public class MyHashSetTest {
         integers.add(36);
         integers.add(39);
         integers.add(38);
+        myHashSet.clear();
         myHashSet.addAll(integers);
         assertTrue(myHashSet.removeAll(integers));
         assertTrue(myHashSet.isEmpty());
